@@ -10,18 +10,20 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('app', 'Manage Application Settings');
 $settings = Yii::$app->settings;
 ?>
-<div class="col-sm-6">
+<div class="col-sm-5">
 <?php $form = ActiveForm::begin(); ?>
 
 <?php echo $form->field($model, 'appName')->textInput(['value' => $settings->get('root', 'appName')]); ?>
 
 <?php echo $form->field($model, 'adminEmail')->textInput(['value' => $settings->get('root', 'adminEmail')]); ?>
 
+<?php echo $form->field($model, 'address')->textInput(['value' => $settings->get('root', 'address')]); ?>
+
 <?php echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
 
 <?php ActiveForm::end(); ?>
 </div>
-<div class="col-sm-6">
+<div class="col-sm-5">
 <div class="administrator-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>
     <p>

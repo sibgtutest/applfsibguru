@@ -12,6 +12,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+$settings = Yii::$app->settings;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -27,42 +28,11 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>My First Bootstrap 4 Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
+  <h1><?php echo $settings->get('root', 'appName') ?></h1> 
+  <p><?php echo $settings->get('root', 'adminEmail') ?></p> 
 </div>
 
 <div class="wrap">
-    <!-- php 
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/home']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    -->
-
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -72,15 +42,8 @@ AppAsset::register($this);
     </div>
 </div>
 
-<!-- footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer -->
 <div class="jumbotron text-center" style="margin-bottom:0">
-  <p>Footer</p>
+  <p><?php echo $settings->get('root', 'address') ?></p>
 </div>
 
 <?php $this->endBody() ?>

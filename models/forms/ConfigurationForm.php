@@ -19,12 +19,17 @@ class ConfigurationForm extends Model
     public $adminEmail;
 
     /**
+     * @var string address
+     */
+    public $address;
+
+    /**
      * @inheritdoc
      */
     public function rules(): array
     {
         return [
-            [['appName', 'adminEmail'], 'required'],
+            [['appName', 'adminEmail', 'address'], 'required'],
         ];
     }
 
@@ -36,6 +41,7 @@ class ConfigurationForm extends Model
         return [
             'appName' => Yii::t('app', 'Application Name'),
             'adminEmail' => Yii::t('app', 'Admin Email'),
+            'address' => Yii::t('app', 'Post Address'),
         ];
     }
 
@@ -47,6 +53,6 @@ class ConfigurationForm extends Model
         $settings = Yii::$app->settings;
         $settings->set('root', 'appName', $this->appName);
         $settings->set('root', 'adminEmail', $this->adminEmail);
-
+        $settings->set('root', 'address', $this->address);
     }
 }
