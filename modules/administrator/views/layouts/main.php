@@ -5,12 +5,12 @@
 
 use app\widgets\Alert;
 use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
-
-
-AppAsset::register($this); 
-
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -22,39 +22,64 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="container-fluid">
- <div class="row">
-  <div class="col-sm-2 bg-primary">
-<div class="p-3 my-3 border">
-  <h1>My First Bootstrap Page</h1>
-  <p>This container has a border and some extra padding and margins.</p>
-</div>
-<div class="p-3 my-3 bg-dark text-white">
-  <h1>My First Bootstrap Page</h1>
-  <p>This container has a dark background color and a white text, and some extra padding and margins.</p>
+
+<div class="wrap">
+    <?php
+    NavBar::begin([
+        'brandLabel' => Yii::$app->name,
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => [
+            'class' => 'navbar-inverse navbar-fixed-top',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => [
+            ['label' => 'Home', 'url' => ['/administrator/default/index']],
+            ['label' => 'Gii', 'url' => ['/gii']],
+            ['label' => 'Post', 'url' => ['/post/default/index']],
+            ['label' => 'Manager', 'url' => ['/manager/default/index']],
+            ['label' => 'User', 'url' => ['/user/user/index']],
+            ['label' => 'Rbac', 'url' => ['/rbac/default/index']],
+            ['label' => 'Setting', 'url' => ['/setting/default/index']],
+            ['label' => 'SignUp', 'url' => ['/user/default/signup'], 'visible' => Yii::$app->user->isGuest],
+            Yii::$app->user->isGuest ? (
+                ['label' => 'Login', 'url' => ['/user/default/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/user/default/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
+            )
+        ],
+    ]);
+    NavBar::end();
+    
+    ?>
+
+    <div class="container">
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?= Alert::widget() ?>
+        <?= $content ?>
+    </div>
 </div>
 
-<div class="p-3 my-3 bg-primary text-white">
-  <h1>My First Bootstrap Page</h1>
-  <p>This container has a blue background color and a white text, and some extra padding and margins.</p>
-</div>
-</div>
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>    
+        <p class="pull-right"><?= Yii::powered() ?></p>
+    </div>
+</footer>
 
-<?= $content ?>
-  
-<div class="col-sm-10">
-<div class="jumbotron text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
-</div>
-</div>
-
-</div>    
-</div>   
 <?php $this->endBody() ?>
 </body>
 </html>

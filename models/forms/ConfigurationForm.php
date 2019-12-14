@@ -51,7 +51,7 @@ class ConfigurationForm extends Model
             return null;
         }*/
         $settings = Yii::$app->settings;
-        $settings->set('root', 'appName', $this->appName);
+        $settings->set('root', 'appName', $this->appName, '123');
         $settings->set('root', 'adminEmail', $this->adminEmail);
         $settings->set('root', 'address', $this->address);
     }

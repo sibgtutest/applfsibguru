@@ -19,12 +19,6 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {  
-        $model = new ConfigurationForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->save();
-            return $this->render('index', ['model' => $model]);
-        } else {
-            return $this->render('index', ['model' => $model]);
-        }
+        return $this->render('index');
     }
 }

@@ -11,15 +11,33 @@ $config = [
         'administrator' => [
             'class' => 'app\modules\administrator\Module',
         ],
-        'settings' => [
-            'class' => 'yii2mod\settings\Module',
-    ],
+        'setting' => [
+            'class' => 'app\modules\setting\Module',
+        ],  
+        'post' => [
+            'class' => 'app\modules\post\Module',
+        ],
+        'manager' => [
+            'class' => 'app\modules\manager\Module',
+        ],
+        'user' => [
+            'class' => 'app\modules\user\Module',
+        ],
+        'student' => [
+            'class' => 'app\modules\student\Module',
+        ],    
+        'rbac' => [
+            'class' => 'app\modules\rbac\Module',
+        ],                                          
     ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],          
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'VGYk5GQ6Dtc3saPnK_eYcvnwOCe-KT70',
@@ -58,30 +76,21 @@ $config = [
             'rules' => [
             ],
         ],
-        */
-        'settings' => [
-            'class' => 'yii2mod\settings\components\Settings',
-        ],
-        'i18n' => [
-            'translations' => [
-                'yii2mod.settings' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@yii2mod/settings/messages',
-                ],
-            ],
-        ],
+        */    
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
+                
+                //'<module:\w+>/<action:\w+>/' => '<module>/default/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/' => '<module>/<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
                 '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
                 '<controller>/<action>/<id:\w+>' => '<controller>/<action>',
                 
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+                //['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
             ],
         ],
 
