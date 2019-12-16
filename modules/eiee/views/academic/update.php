@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\eiee\models\Profile */
 
-$this->title = 'Обновить: ' . $model->name;
+$this->title = 'Обновить: ' . 'Учебная работа студента';
 $this->params['breadcrumbs'][] = ['label' => 'Учебная работа студента', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => 'Посмотреть', 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Обновить';

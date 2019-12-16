@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\eiee\models\ProfileSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Profiles';
+$this->title = 'Статьи студента';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profile-index">
@@ -15,27 +15,27 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Profile', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'name',
-            'section',
-            'key',
-            'value:ntext',
+            //'id',
+            //'name',
+            //'section',
+            'key_profile',
+            'value_profile',
             //'status',
             //'rule',
             //'tag',
-            //'createdAt',
-            //'updatedAt',
+            'createdAt',
+            'updatedAt',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

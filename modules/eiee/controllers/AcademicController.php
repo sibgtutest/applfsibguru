@@ -60,8 +60,9 @@ class AcademicController extends Controller
         ]);*/
         //$searchModel = new ProfileSearch();
         $userid = \Yii::$app->user->identity->id;
+        $query = Profile::find()->where(['rule' => $userid, 'section' => 'Academic']);
         $dataProvider = new ActiveDataProvider([
-            'query' => Profile::find()->where(['rule' => $userid]), 
+            'query' => $query, 
         ]);
 
         return $this->render('index', [
@@ -119,7 +120,7 @@ class AcademicController extends Controller
         
         if(Yii::$app->request->post()) {
              $model->load(Yii::$app->request->post());
-             var_dump($model);
+             
              $model->filename = UploadedFile::getInstance($model, 'filename');
              
              if ($model->validate()) {
@@ -150,15 +151,15 @@ class AcademicController extends Controller
         /*if (!($model->rule == $userid)) {
             return $this->redirect(['index']);
         }*/
-        $searchModel = new ProfileSearch();
+        //$searchModel = new ProfileSearch();
         $dataProvider = new ActiveDataProvider([
             'query' => Profile::find()->where(['rule' => $userid]),
         ]);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->redirect(
                 \yii\helpers\Url::toRoute([
-                    'index', 
-                    'searchModel' => $searchModel, 
+                    '/eiee/academic/index', 
+                    //'searchModel' => $searchModel, 
                     'dataProvider' => $dataProvider]));
             /*return $this->render('index', [
                 'searchModel' => $searchModel,
@@ -195,6 +196,14 @@ class AcademicController extends Controller
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
     }
+
+    public function actionSave($id)
+    {
+        \Yii::$app->db->createCommand()
+             ->update('profile', ['status' => 0], ['id' => $id])
+             ->execute();
+        return $this->redirect(['index']);
+    }   
 
     /**
      * Finds the Profile model based on its primary key value.

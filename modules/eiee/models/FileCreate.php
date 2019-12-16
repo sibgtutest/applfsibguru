@@ -14,14 +14,22 @@ class FileCreate extends Model
     public function rules()
     {
         return [
-            [['filename'], 'file', 'extensions' => 'pdf', 'skipOnEmpty' => false],
+            [['filename'], 'file', 'extensions' => 'pdf', 'skipOnEmpty' => false, 'on'=>'update'],
             [['value_profile'], 'required'],
             [['value_profile'], 'string', 'max' => 255],
+            ['filename', 'validateFilename'],
         ];
     }
-
+    public function validateFilename()
+    {
+        $model = Profile::find()->where(['key_profile' => $this->filename])->One();
+        if ($model) {
+            $this->addError('filename', 'Файл <'.$this->filename.'> уже создан. Переименуйте и создайте снова.');
+        }        
+    }
     public function saveAcademic(String $modelfilename)
     {
+        
         $model = new Profile();
         
         $model->name = 'Учебная работа студента';
@@ -35,7 +43,85 @@ class FileCreate extends Model
         $model->updatedAt = date('Y-m-d H:i:s');
         //var_dump($model);
         $model->save();
-        
     }
-
+    public function savePaper(String $modelfilename)
+    {
+        $model = new Profile();
+        
+        $model->name = 'Учебная работа студента';
+        $model->section = 'Paper';
+        $model->key_profile = $modelfilename;
+        $model->value_profile = $this->value_profile;
+        $model->status = '1';
+        $model->rule = Yii::$app->user->getId().'';
+        $model->tag = '1';
+        $model->createdAt = date('Y-m-d H:i:s');
+        $model->updatedAt = date('Y-m-d H:i:s');
+        //var_dump($model);
+        $model->save();
+    }
+    public function savePlan(String $modelfilename)
+    {
+        $model = new Profile();
+        
+        $model->name = 'Учебная работа студента';
+        $model->section = 'Plan';
+        $model->key_profile = $modelfilename;
+        $model->value_profile = $this->value_profile;
+        $model->status = '1';
+        $model->rule = Yii::$app->user->getId().'';
+        $model->tag = '1';
+        $model->createdAt = date('Y-m-d H:i:s');
+        $model->updatedAt = date('Y-m-d H:i:s');
+        //var_dump($model);
+        $model->save();
+    }  
+    public function savePublic(String $modelfilename)
+    {
+        $model = new Profile();
+        
+        $model->name = 'Учебная работа студента';
+        $model->section = 'Public';
+        $model->key_profile = $modelfilename;
+        $model->value_profile = $this->value_profile;
+        $model->status = '1';
+        $model->rule = Yii::$app->user->getId().'';
+        $model->tag = '1';
+        $model->createdAt = date('Y-m-d H:i:s');
+        $model->updatedAt = date('Y-m-d H:i:s');
+        //var_dump($model);
+        $model->save();
+    }    
+    public function saveScientific(String $modelfilename)
+    {
+        $model = new Profile();
+        
+        $model->name = 'Учебная работа студента';
+        $model->section = 'Scientific';
+        $model->key_profile = $modelfilename;
+        $model->value_profile = $this->value_profile;
+        $model->status = '1';
+        $model->rule = Yii::$app->user->getId().'';
+        $model->tag = '1';
+        $model->createdAt = date('Y-m-d H:i:s');
+        $model->updatedAt = date('Y-m-d H:i:s');
+        //var_dump($model);
+        $model->save();
+    }  
+    public function saveSport(String $modelfilename)
+    {
+        $model = new Profile();
+        
+        $model->name = 'Учебная работа студента';
+        $model->section = 'Sport';
+        $model->key_profile = $modelfilename;
+        $model->value_profile = $this->value_profile;
+        $model->status = '1';
+        $model->rule = Yii::$app->user->getId().'';
+        $model->tag = '1';
+        $model->createdAt = date('Y-m-d H:i:s');
+        $model->updatedAt = date('Y-m-d H:i:s');
+        //var_dump($model);
+        $model->save();
+    }   
 }    

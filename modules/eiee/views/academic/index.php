@@ -37,7 +37,41 @@ $this->params['breadcrumbs'][] = $this->title;
             'createdAt',
             'updatedAt',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => "<div style='width:90px; display:inline-block;'>" .
+                            "{view} {save} {update} {delete}" .
+                            "</div>",
+                'buttons' => [
+                    'view' => function ($url,$model) {
+                        return Html::a('<span>Посмотреть</span>', $url);
+                    },
+                    'update' => function ($url,$model) {
+                        if ($model->status == '1') {
+                            return ' | ' . Html::a('<span>Изменить</span>', $url);
+                        };
+                    },
+                    'delete' => function ($url,$model) {
+                        if ($model->status == '1') {
+                            return ' | ' . Html::a('<span>Удалить</span>', $url, [
+                                    'data' => [
+                                        'confirm' => 'Вы уверены, что хотите удалить этот документ?',
+                                        'method' => 'post',
+                                    ],
+                                ]);
+                        };
+                    },
+                    'save' => function ($url,$model,$key) {
+                        if ($model->status == '1') {
+                            return ' | ' . Html::a('Сохранить', $url, [
+                                        'data' => [
+                                            'confirm' => 'Вы уверены, что хотите сохранить этот документ?',
+                                        ],
+                                    ]);
+                        };
+                    },
+                ]
+            ],
         ],
     ]); ?>
 

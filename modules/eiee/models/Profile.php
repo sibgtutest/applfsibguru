@@ -36,6 +36,7 @@ class Profile extends \yii\db\ActiveRecord
         return [
             [['name', 'section', 'key_profile', 'value_profile', 'status', 'rule', 'tag', 'createdAt', 'updatedAt'], 'required'],
             [['name', 'section', 'key_profile', 'value_profile', 'status', 'rule', 'tag', 'createdAt', 'updatedAt'], 'string', 'max' => 255],
+            [['key_profile'], 'unique'],
         ];
     }
 
