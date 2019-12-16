@@ -3,6 +3,7 @@
 namespace app\modules\post\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use app\modules\post\models\Post;
 use app\modules\post\models\PostSearch;
 use yii\web\Controller;
@@ -21,6 +22,17 @@ class DefaultController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index'],
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],            
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

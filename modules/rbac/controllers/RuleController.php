@@ -14,12 +14,24 @@ use yii\filters\VerbFilter;
  */
 class RuleController extends Controller
 {
+    public $layout =  '@app/modules/administrator/views/layouts/main.php';
     /**
      * {@inheritdoc}
      */
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index'],
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],            
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

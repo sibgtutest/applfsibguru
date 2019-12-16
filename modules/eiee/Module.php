@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\student;
+namespace app\modules\eiee;
 
 /**
- * student module definition class
+ * eiee module definition class
  */
 class Module extends \yii\base\Module
 {
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'app\modules\student\controllers';
+    public $controllerNamespace = 'app\modules\eiee\controllers';
 
     /**
      * {@inheritdoc}

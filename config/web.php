@@ -8,6 +8,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules' => [
+        // administrators modules
         'administrator' => [
             'class' => 'app\modules\administrator\Module',
         ],
@@ -23,12 +24,12 @@ $config = [
         'user' => [
             'class' => 'app\modules\user\Module',
         ],
-        'student' => [
-            'class' => 'app\modules\student\Module',
-        ],    
         'rbac' => [
             'class' => 'app\modules\rbac\Module',
-        ],                                          
+        ],  
+        'eiee' => [
+            'class' => 'app\modules\eiee\Module',
+        ],
     ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
