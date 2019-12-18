@@ -3,9 +3,8 @@
 namespace app\modules\eiee\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use app\modules\eiee\models\Profile;
-use app\modules\eiee\models\ProfileSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,17 +21,6 @@ class ProfileController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['index,view,create,update,delete'],
-                'rules' => [
-                    [
-                        'actions' => ['index,view,create,update,delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -48,11 +36,14 @@ class ProfileController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProfileSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $userid = \Yii::$app->user->identity->id;
+        $dataProvider = new ActiveDataProvider([
+            'query' => Profile::find()
+            ->where(['section' => 'Profile'])
+            ->andWhere(['rule' => $userid]),
+        ]);
+        //$dataProvider->pagination->pageSize = 3;    
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -100,7 +91,16 @@ class ProfileController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $userid = \Yii::$app->user->identity->id;
+            $dataProvider = new ActiveDataProvider([
+                'query' => Profile::find()
+                ->where(['section' => 'Profile'])
+                ->andWhere(['rule' => $userid]),
+            ]);
+            return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+            //return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [

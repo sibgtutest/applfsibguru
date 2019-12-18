@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'section')->textInput(['maxlength' => true])->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'key_profile')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'key_profile')->textInput(['maxlength' => true])->hiddenInput()->label(false) ?>
 
     <?= $form->field($model, 'value_profile')->textInput(['maxlength' => true]) ?>
 

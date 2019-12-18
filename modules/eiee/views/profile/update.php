@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\eiee\models\Profile */
 
-$this->title = 'Update Profile: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Profiles', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Обновить: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Контактные данные', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Обновить';
 ?>
 <div class="profile-update">
 

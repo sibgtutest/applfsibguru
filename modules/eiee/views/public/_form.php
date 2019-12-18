@@ -10,25 +10,26 @@ use yii\widgets\ActiveForm;
 
 <div class="profile-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => ['enctype' => 'multipart/form-data'],
+        'fieldConfig' => [
+				'template' => "<div class='row'>\n" .
+						"<div class='col-sm-2'>" .
+							"{label}\n" .
+                        "</div>\n" .
+                        "<div class='col-sm-10'>" .
+							"{input}\n" .
+                        "</div>\n" .
+                    "</div>\n" .  
+                        "<h3>" .
+                            "{error}\n" .
+                        "</h3>\n",  
+					]
+    ]); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'filename')->label(false)->fileInput(); ?>
 
-    <?= $form->field($model, 'section')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'key')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'value')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'rule')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'tag')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'createdAt')->textInput() ?>
-
-    <?= $form->field($model, 'updatedAt')->textInput() ?>
+    <?= $form->field($model, 'value_profile')->textInput(['maxlength' => true])->label('Описание') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

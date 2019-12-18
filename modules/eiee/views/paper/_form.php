@@ -11,7 +11,20 @@ use yii\widgets\ActiveForm;
 <div class="profile-form">
 
     <?php $form = ActiveForm::begin([
-        'options' => ['enctype' => 'multipart/form-data']
+        'options' => ['enctype' => 'multipart/form-data'],
+        'fieldConfig' => [
+				'template' => "<div class='row'>\n" .
+						"<div class='col-sm-2'>" .
+							"{label}\n" .
+                        "</div>\n" .
+                        "<div class='col-sm-10'>" .
+							"{input}\n" .
+                        "</div>\n" .
+                    "</div>\n" .  
+                        "<h3>" .
+                            "{error}\n" .
+                        "</h3>\n",  
+					]
     ]); ?>
 
     <?= $form->field($model, 'filename')->label(false)->fileInput(); ?>

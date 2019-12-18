@@ -20,18 +20,18 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'value_profile')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true])->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'status')->textInput()->hiddenInput()->label(false) ?>
 
     <?= $form->field($model, 'rule')->textInput(['maxlength' => true])->hiddenInput()->label(false) ?>
 
     <?= $form->field($model, 'tag')->textInput(['maxlength' => true])->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'createdAt')->textInput(['maxlength' => true])->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'createdAt')->textInput()->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'updatedAt')->textInput(['maxlength' => true, 'readonly' => true, 'value' => date('Y-m-d H:i:s')])?>
+    <?= $form->field($model, 'updatedAt')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\eiee\models\Profile */
 
-$this->title = 'Create Profile';
-$this->params['breadcrumbs'][] = ['label' => 'Profiles', 'url' => ['index']];
+$this->title = 'Создать';
+$this->params['breadcrumbs'][] = ['label' => 'Общественные достижения студента', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profile-create">

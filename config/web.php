@@ -6,6 +6,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'language' => 'ru-RU', // <- здесь!
     'bootstrap' => ['log'],
     'modules' => [
         // administrators modules
@@ -30,6 +31,9 @@ $config = [
         'eiee' => [
             'class' => 'app\modules\eiee\Module',
         ],
+        'chat' => [
+            'class' => 'app\modules\chat\Module',
+        ],        
     ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -84,10 +88,19 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                
+                '<module:\w+>/' => '<module>/default/index',
+                '<module:\w+>/portfolio' => '<module>/default/profile',
+                '<module:\w+>/academic/' => '<module>/academic/index',
+                '<module:\w+>/paper/' => '<module>/paper/index',
+                '<module:\w+>/scientific/' => '<module>/scientific/index',
+                '<module:\w+>/public/' => '<module>/public/index',
+                '<module:\w+>/sport/' => '<module>/sport/index',
+                '<module:\w+>/profile/' => '<module>/profile/index',
+
                 //'<module:\w+>/<action:\w+>/' => '<module>/default/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/' => '<module>/<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+                
                 '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
                 '<controller>/<action>/<id:\w+>' => '<controller>/<action>',
                 

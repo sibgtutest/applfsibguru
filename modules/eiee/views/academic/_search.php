@@ -25,15 +25,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'value_profile') ?>
 
-    <?= $form->field($model, 'status') ?>
+    <?php // echo $form->field($model, 'status') ?>
 
-    <?= $form->field($model, 'rule') ?>
+    <?php // echo $form->field($model, 'rule') ?>
 
-    <?= $form->field($model, 'tag') ?>
+    <?php // echo $form->field($model, 'tag') ?>
 
-    <?= $form->field($model, 'createdAt') ?>
+    <?php // echo $form->field($model, 'createdAt') ?>
 
-    <?= $form->field($model, 'updatedAt') ?>
+    <?php // echo $form->field($model, 'updatedAt') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

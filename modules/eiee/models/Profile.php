@@ -49,7 +49,7 @@ class Profile extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'section' => 'Section',
-            'key_profile' => 'Имя файла',
+            'key_profile' => 'Наименование',
             'value_profile' => 'Описание',
             'status' => 'Status',
             'rule' => 'Rule',

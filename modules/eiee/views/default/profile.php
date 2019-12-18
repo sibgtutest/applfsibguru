@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Html;
+
 /* @var $this yii\web\View */
 
 $this->title = $this->context->action->uniqueId;
@@ -14,33 +16,33 @@ $this->title = $this->context->action->uniqueId;
     <div class="row">
         <div class="col-sm-4">
             <ul class="list-group">
-                <a href="/eiee/academic/index" class="list-group-item">
+                <?= Html::a('
                     Учебная работа студента
-                </a>
-                <a href="/eiee/paper/index" class="list-group-item">
+                ', ['/eiee/academic/index'], ['class' => 'list-group-item']) ?>
+                <?= Html::a('
                     Статьи студента
-                </a>                
+                ', ['/eiee/paper/index'], ['class' => 'list-group-item']) ?>             
             </ul>
         </div>
         <div class="col-sm-4">
             <ul class="list-group">
-                <a href="/eiee/scientific/index" class="list-group-item">
+                <?= Html::a('
                     Научные достижения студента
-                </a>
-                <a href="/eiee/public/index" class="list-group-item">
+                ', ['/eiee/scientific/index'], ['class' => 'list-group-item']) ?>     
+                <?= Html::a('
                     Общественные достижения студента
-                </a>
-                <a href="/eiee/sport/index" class="list-group-item">
+                ', ['/eiee/public/index'], ['class' => 'list-group-item']) ?>  
+                <?= Html::a('
                     Спортивные достижения студента
-                </a>                                
+                ', ['/eiee/sport/index'], ['class' => 'list-group-item']) ?>                              
             </ul>
         </div>          
         <div class="col-sm-4">
             <ul class="list-group">
-                <a href="/eiee/profile/index" class="list-group-item">
+                <?= Html::a('
                     Контактные данные
-                </a>
-                <a href="/eiee/plan/index" class="list-group-item">
+                ', ['/eiee/profile/index'], ['class' => 'list-group-item']) ?>  
+                <a href="http://lfsibgu.ru/sveden/education/#docs" class="list-group-item">
                     Учебный план
                 </a>                
             </ul>

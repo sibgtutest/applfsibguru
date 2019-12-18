@@ -8,6 +8,9 @@ use app\modules\eiee\models\ProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\eiee\models\FileCreate;
+use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 
 /**
@@ -48,11 +51,13 @@ class ScientificController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProfileSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $userid = \Yii::$app->user->identity->id;
+        $query = Profile::find()->where(['rule' => $userid, 'section' => 'Scientific']);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query, 
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -65,9 +70,18 @@ class ScientificController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        $dataProvider = Profile::find()->where(['id' => $id])->limit(1)->one();
+        $filename = $dataProvider->key_profile;
+        $i = \Yii::$app->user->identity->id;
+        $file = \Yii::$app->params['pathUploads'] . $i . '/' . 'Scientific_' . $filename;
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        echo file_get_contents($file);
+        exit;
     }
 
     /**
@@ -77,10 +91,21 @@ class ScientificController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Profile();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model = new FileCreate();
+        $userid= \Yii::$app->user->identity->id;
+        
+        if(Yii::$app->request->post()) {
+             $model->load(Yii::$app->request->post());
+             
+             $model->filename = UploadedFile::getInstance($model, 'filename');
+             
+             if ($model->validate()) {
+                  $path = Yii::$app->params['pathUploads'] . $userid . '/';
+                  $filename = $model->filename;
+                  $model->filename->saveAs( $path . 'Scientific_' . $filename);
+                  $model->saveScientific($filename);
+                  return $this->redirect(['scientific/index']);
+             }
         }
 
         return $this->render('create', [
@@ -98,11 +123,16 @@ class ScientificController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $userid= \Yii::$app->user->identity->id;
+        $dataProvider = new ActiveDataProvider([
+            'query' => Profile::find()->where(['rule' => $userid]),
+        ]);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $this->redirect(
+                \yii\helpers\Url::toRoute([
+                    '/eiee/scientific/index', 
+                    'dataProvider' => $dataProvider]));
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);
@@ -117,10 +147,21 @@ class ScientificController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $userid= \Yii::$app->user->identity->id;
+        $path = \Yii::$app->params['pathUploads'] . $userid . '/';
+        unlink( $path . 'Scientific_' . $this->findModel($id)->key_profile );
 
+        $this->findModel($id)->delete();
         return $this->redirect(['index']);
     }
+
+    public function actionSave($id)
+    {
+        \Yii::$app->db->createCommand()
+             ->update('profile', ['status' => 0], ['id' => $id])
+             ->execute();
+        return $this->redirect(['index']);
+    }   
 
     /**
      * Finds the Profile model based on its primary key value.

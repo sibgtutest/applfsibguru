@@ -51,13 +51,6 @@ class PaperController extends Controller
      */
     public function actionIndex()
     {
-        /*$searchModel = new ProfileSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);*/
         $userid = \Yii::$app->user->identity->id;
         $query = Profile::find()->where(['rule' => $userid, 'section' => 'Paper']);
         $dataProvider = new ActiveDataProvider([
@@ -65,7 +58,6 @@ class PaperController extends Controller
         ]);
 
         return $this->render('index', [
-            //'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -82,20 +74,14 @@ class PaperController extends Controller
         $filename = $dataProvider->key_profile;
         $i = \Yii::$app->user->identity->id;
         $file = \Yii::$app->params['pathUploads'] . $i . '/' . 'Paper_' . $filename;
-        //header('Content-Description: File Transfer');
-        //header('Content-Type: application/octet-stream');
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="'.basename($file).'"');
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
         header('Content-Length: ' . filesize($file));
-        //readfile($file);
         echo file_get_contents($file);
         exit;
-        /*return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);*/
     }
 
     /**
@@ -105,15 +91,6 @@ class PaperController extends Controller
      */
     public function actionCreate()
     {
-        /*$model = new Profile();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);*/
         $model = new FileCreate();
         $userid= \Yii::$app->user->identity->id;
         
@@ -147,10 +124,6 @@ class PaperController extends Controller
     {
         $model = $this->findModel($id);
         $userid= \Yii::$app->user->identity->id;
-        /*if (!($model->rule == $userid)) {
-            return $this->redirect(['index']);
-        }*/
-        //$searchModel = new ProfileSearch();
         $dataProvider = new ActiveDataProvider([
             'query' => Profile::find()->where(['rule' => $userid]),
         ]);
@@ -158,21 +131,11 @@ class PaperController extends Controller
             $this->redirect(
                 \yii\helpers\Url::toRoute([
                     '/eiee/paper/index', 
-                    //'searchModel' => $searchModel, 
                     'dataProvider' => $dataProvider]));
         }
         return $this->render('update', [
             'model' => $model,
         ]);
-        /*$model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);*/
     }
 
     /**
@@ -191,6 +154,14 @@ class PaperController extends Controller
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
     }
+
+    public function actionSave($id)
+    {
+        \Yii::$app->db->createCommand()
+             ->update('profile', ['status' => 0], ['id' => $id])
+             ->execute();
+        return $this->redirect(['index']);
+    } 
 
     /**
      * Finds the Profile model based on its primary key value.
