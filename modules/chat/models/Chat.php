@@ -29,6 +29,7 @@ class Chat extends \yii\db\ActiveRecord
     {
         return [
             [['userid'], 'integer'],
+            [['childid'], 'integer'],
             [['message'], 'string'],
             [['updateDate'], 'safe'],
         ];
@@ -42,6 +43,7 @@ class Chat extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'userid' => 'User ID',
+            'childid' => 'Child ID',
             'message' => 'Message',
             'updateDate' => 'Update Date',
         ];

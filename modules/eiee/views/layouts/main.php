@@ -32,7 +32,7 @@ Yii::setAlias('@lfsibguru', 'http://www.lfsibgu.ru/');
     <?php
     NavBar::begin([
         //'brandLabel' => Yii::$app->name,
-        'brandLabel' => 'test.lfsibgu.ru:8080',
+        'brandLabel' => 'test.lfsibgu.ru',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',

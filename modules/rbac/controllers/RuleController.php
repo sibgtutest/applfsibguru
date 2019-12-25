@@ -8,6 +8,7 @@ use app\modules\rbac\models\RuleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * RuleController implements the CRUD actions for AuthRule model.
@@ -28,8 +29,24 @@ class RuleController extends Controller
                     [
                         'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['admin'],
                     ],
+                    [
+                        'actions' => ['view'],
+                        'allow' => false,
+                    ], 
+                    [
+                        'actions' => ['create'],
+                        'allow' => false,
+                    ],  
+                    [
+                        'actions' => ['update'],
+                        'allow' => false,
+                    ],    
+                    [
+                        'actions' => ['delete'],
+                        'allow' => false,
+                    ],  
                 ],
             ],            
             'verbs' => [

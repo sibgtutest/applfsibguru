@@ -28,8 +28,24 @@ class ItemController extends Controller
                     [
                         'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['admin'],
                     ],
+                    [
+                        'actions' => ['view'],
+                        'allow' => false,
+                    ], 
+                    [
+                        'actions' => ['create'],
+                        'allow' => false,
+                    ],  
+                    [
+                        'actions' => ['update'],
+                        'allow' => false,
+                    ],    
+                    [
+                        'actions' => ['delete'],
+                        'allow' => false,
+                    ],  
                 ],
             ],            
             'verbs' => [
