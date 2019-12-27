@@ -1,3 +1,4 @@
+composer.lock
 *.pdf
 assets/*
 !assets/.gitignore
