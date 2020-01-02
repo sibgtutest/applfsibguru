@@ -37,7 +37,7 @@ use yii\helpers\Html;
           в том числе сохраненные работы обучающегося, 
           рецензии и оценки на эти работы 
           со стороны любых участников образовательного процесса
-        ', ['/eiee/default/profile'], ['class' => 'list-group-item']) ?>
+        ', ['/eiee/default/profile1'], ['class' => 'list-group-item']) ?>
     </ul>
   </div>
 </div>

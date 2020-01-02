@@ -63,7 +63,7 @@ Yii::setAlias('@lfsibguru', 'http://www.lfsibgu.ru/');
         <?= Breadcrumbs::widget([
             'homeLink' => [
                 'label' => 'Портфолио',
-                'url' => Url::toRoute('/eiee/default/profile'),
+                'url' => Url::toRoute('/eiee/default/profile1'),
             ],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
