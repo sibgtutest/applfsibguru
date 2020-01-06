@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -29,8 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        //'brandLabel' => Yii::$app->name,
-        'brandLabel' => 'test.lfsibgu.ru',
+        'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -39,7 +39,26 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'ЭИОС', 'url' => ['/eiee/default/index']],
+            ['label' => 'Home', 'url' => ['/administrator/default/index']],
+            ['label' => 'Gii', 'url' => ['/gii']],
+            ['label' => 'Post', 'url' => ['/post/default/index']],
+            ['label' => 'Manager', 'url' => ['/manager/default/index']],
+            ['label' => 'User', 'url' => ['/user/user/index']],
+            ['label' => 'Rbac', 'url' => ['/rbac/default/index']],
+            ['label' => 'Setting', 'url' => ['/setting/default/index']],
+            ['label' => 'SignUp', 'url' => ['/user/default/signup'], 'visible' => Yii::$app->user->isGuest],
+            Yii::$app->user->isGuest ? (
+                ['label' => 'Login', 'url' => ['/site/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
+            )
         ],
     ]);
     NavBar::end();
@@ -47,6 +66,10 @@ AppAsset::register($this);
 
     <div class="container">
         <?= Breadcrumbs::widget([
+            'homeLink' => [
+                'label' => 'Страница',
+                'url' => Url::toRoute('/post/default/index'),
+            ],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>

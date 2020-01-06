@@ -21,10 +21,19 @@ class RbacController extends Controller
         $updatePost->description = 'Update post';
         $auth->add($updatePost);
 
+        // добавляем разрешение "Section"
+        $permissionSection = $auth->createPermission('Section');
+        $permissionSection->description = 'Section';
+        $auth->add($permissionSection);   
+        // добавляем разрешение "Section3"
+        $permissionSection3 = $auth->createPermission('Section3');
+        $permissionSection3->description = 'заголовок секции 3';
+        $auth->add($permissionSection3);               
+
         // добавляем роль "author" и даём роли разрешение "createPost"
         $author = $auth->createRole('author');
         $auth->add($author);
-        $auth->addChild($author, $createPost);
+        //$auth->addChild($author, $createPost);
 
         // добавляем роль "admin" и даём роли разрешение "updatePost"
         // а также все разрешения роли "author" 
@@ -32,6 +41,8 @@ class RbacController extends Controller
         $auth->add($admin);
         $auth->addChild($admin, $updatePost);
         $auth->addChild($admin, $author);
+        $auth->addChild($admin, $permissionSection);
+        $auth->addChild($admin, $permissionSection3);
 
         // Назначение ролей пользователям. 1 и 2 это IDs возвращаемые IdentityInterface::getId()
         // обычно реализуемый в модели User.
@@ -47,9 +58,9 @@ class RbacController extends Controller
         $auth->assign($stud, 4);
 
         // добавляем разрешение "farid"
-        $farid = $auth->createPermission('farid');
-        $farid->description = 'farid';
-        $auth->add($farid);
+        //$farid = $auth->createPermission('farid');
+        //$farid->description = 'farid';
+        //$auth->add($farid);
 
         // добавляем роли "stud" разрешение "farid"
         //$auth->addChild($stud, $farid);
@@ -61,8 +72,8 @@ class RbacController extends Controller
         $auth->add($staf);
         $auth->assign($staf, 2);
 
-        $farid = $auth->createPermission('farid');
-        $auth->addChild($staf, $farid);
+        //$farid = $auth->createPermission('farid');
+        //$auth->addChild($staf, $farid);
     }
 
 }

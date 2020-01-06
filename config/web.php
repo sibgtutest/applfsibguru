@@ -42,6 +42,7 @@ $config = [
     'components' => [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
+            'defaultRoles'    => ['guest'],
         ],          
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -88,7 +89,11 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                '<module:\w+>/' => '<module>/default/index',
+                '<section:\w+>' => 'post/page/index',
+                '<module:\w+>/<controller:\w+>/<action:\w+>/<section:\w+>' 
+                    => '<module>/<controller>/<action>',
+                
+                //'<module:\w+>/' => '<module>/default/index',
                 //'<module:\w+>/portfolio' => '<module>/default/profile',
                 '<module:\w+>/academic/' => '<module>/academic/index',
                 '<module:\w+>/paper/' => '<module>/paper/index',
@@ -98,7 +103,8 @@ $config = [
                 '<module:\w+>/profile/' => '<module>/profile/index',
 
                 //'<module:\w+>/<action:\w+>/' => '<module>/default/<action>',
-                '<module:\w+>/<controller:\w+>/<action:\w+>/' => '<module>/<controller>/<action>',
+                '<module:\w+>/<controller:\w+>/<action:\w+>/' 
+                    => '<module>/<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
                 
                 '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
