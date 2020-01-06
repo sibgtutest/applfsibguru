@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\eiee\models\Profile */
 
 $this->title = 'Создать';
-$this->params['breadcrumbs'][] = ['label' => 'Учебная работа студента', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Учебная работа студента', 'url' => ['index', 'section' => 'academic']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profile-create">

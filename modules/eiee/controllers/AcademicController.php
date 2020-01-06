@@ -49,16 +49,51 @@ class AcademicController extends Controller
      * Lists all Profile models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($section = NULL)
     {
+        if ($section == NULL){
+            return $this->goHome();
+        };
         $userid = \Yii::$app->user->identity->id;
-        $query = Profile::find()->where(['rule' => $userid, 'section' => 'Academic']);
+        $query = Profile::find()->where(['rule' => $userid, 'section' => $section]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query, 
         ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'section' => $section,
+        ]);
+    }
+
+    /**
+     * Creates a new Profile model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate($section = NULL)
+    {
+        if ($section == NULL){
+            return $this->goHome();
+        };
+        $model = new FileCreate();
+        $userid= \Yii::$app->user->identity->id;
+        
+        if(Yii::$app->request->post()) {
+             $model->load(Yii::$app->request->post());
+             
+             $model->filename = UploadedFile::getInstance($model, 'filename');
+             
+             if ($model->validate()) {
+                  $path = Yii::$app->params['pathUploads'] . $userid . '/';
+                  $filename = $model->filename;
+                  $model->filename->saveAs( $path . $section . '_' . $filename);
+                  $model->save_($section, $filename);
+                  return $this->redirect([$section . '/index', 'section' => $section]);
+             }
+        }
+        return $this->render('create', [
+            'model' => $model,
         ]);
     }
 
@@ -73,7 +108,7 @@ class AcademicController extends Controller
         $dataProvider = Profile::find()->where(['id' => $id])->limit(1)->one();
         $filename = $dataProvider->key_profile;
         $i = \Yii::$app->user->identity->id;
-        $file = \Yii::$app->params['pathUploads'] . $i . '/' . 'Academic_' . $filename;
+        $file = \Yii::$app->params['pathUploads'] . $i . '/' . $dataProvider->section . '_' . $filename;
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="'.basename($file).'"');
         header('Expires: 0');
@@ -82,35 +117,6 @@ class AcademicController extends Controller
         header('Content-Length: ' . filesize($file));
         echo file_get_contents($file);
         exit;
-    }
-
-    /**
-     * Creates a new Profile model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new FileCreate();
-        $userid= \Yii::$app->user->identity->id;
-        
-        if(Yii::$app->request->post()) {
-             $model->load(Yii::$app->request->post());
-             
-             $model->filename = UploadedFile::getInstance($model, 'filename');
-             
-             if ($model->validate()) {
-                  $path = Yii::$app->params['pathUploads'] . $userid . '/';
-                  $filename = $model->filename;
-                  $model->filename->saveAs( $path . 'Academic_' . $filename);
-                  $model->saveAcademic($filename);
-                  return $this->redirect(['academic/index']);
-             }
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -130,12 +136,10 @@ class AcademicController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->redirect(
                 \yii\helpers\Url::toRoute([
-                    '/eiee/academic/index', 
+                    '/eiee/'.$model['section'].'/index', 
                     'dataProvider' => $dataProvider]));
         }
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update', ['model' => $model,]);
     }
 
     /**

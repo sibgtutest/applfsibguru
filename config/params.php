@@ -7,5 +7,5 @@ return [
     /*
     * pathUploads - Электронная информационно-образовательная среда
     */
-    'pathUploads' => '/home/farid/NetBeansProjects/applfsibguru/profile/'
+    'pathUploads' => '/home/farid/applfsibguru/profile/'
 ];

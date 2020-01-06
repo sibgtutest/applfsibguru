@@ -9,6 +9,7 @@ $this->title = 'Обновить: ' . 'Учебная работа студен�
 $this->params['breadcrumbs'][] = ['label' => 'Учебная работа студента', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => 'Посмотреть', 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Обновить';
+$action = 'update';
 ?>
 <div class="profile-update">
 
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'][] = 'Обновить';
 
     <?= $this->render('_form1', [
         'model' => $model,
+        'action' => $action,
     ]) ?>
 
 </div>

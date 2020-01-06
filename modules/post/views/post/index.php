@@ -27,31 +27,31 @@ $this->params['breadcrumbs'][] = $description;
             'key_post',
             'value_post:ntext',
             //'status',
-            ['attribute' => 'status',
+            [
+                'attribute' => 'status',
                 'value' => function ($data) {
                     if ($data['status'] == '1') {
-                        return Html::checkbox('status',0,['disabled' => true]);
+                        return Html::checkbox('status', 0, ['disabled' => true]);
                     } else {
-                        return Html::checkbox('status',1,['disabled' => true]);
+                        return Html::checkbox('status', 1, ['disabled' => true]);
                     }
-
-                }
-                , 'format' => 'raw'
+                }, 'format' => 'raw'
             ],
             //'rule',
-            
+
             'updatedAt',
 
             //['class' => 'yii\grid\ActionColumn'],
-            ['class' => 'yii\grid\ActionColumn',
+            [
+                'class' => 'yii\grid\ActionColumn',
                 'template' => "<div style='width:70px; display:inline-block;'>" .
-                            "{update} {delete}" .
-                            "</div>",
+                    "{update} {delete}" .
+                    "</div>",
                 'buttons' => [
-                    'update' => function ($url,$model) {
+                    'update' => function ($url, $model) {
                         return Html::a('<span>Обновить</span>', $url);
                     },
-                    'delete' => function ($url,$model) {
+                    'delete' => function ($url, $model) {
                         return Html::a('<span>Удалить</span>', $url, [
                             'data' => [
                                 'confirm' => 'Вы уверены, что хотите удалить этот документ?',

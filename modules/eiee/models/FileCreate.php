@@ -27,13 +27,12 @@ class FileCreate extends Model
             $this->addError('filename', 'Файл <'.$this->filename.'> уже создан. Переименуйте и создайте снова.');
         }        
     }
-    public function saveAcademic(String $modelfilename)
+    public function saveAcademic(String $section, String $modelfilename)
     {
-        
         $model = new Profile();
-        
+       // $model->name = $this->getModelName($section);
         $model->name = 'Учебная работа студента';
-        $model->section = 'Academic';
+        $model->section = $section;
         $model->key_profile = $modelfilename;
         $model->value_profile = $this->value_profile;
         $model->status = '1';
@@ -41,8 +40,27 @@ class FileCreate extends Model
         $model->tag = '1';
         $model->createdAt = date('Y-m-d H:i:s');
         $model->updatedAt = date('Y-m-d H:i:s');
-        //var_dump($model);
         $model->save();
+    }
+    public function save_(String $section, String $modelfilename)
+    {
+        $model = new Profile();
+       // $model->name = $this->getModelName($section);
+        $model->name = 'Учебная работа студента';
+        $model->section = $section;
+        $model->key_profile = $modelfilename;
+        $model->value_profile = $this->value_profile;
+        $model->status = '1';
+        $model->rule = Yii::$app->user->getId().'';
+        $model->tag = '1';
+        $model->createdAt = date('Y-m-d H:i:s');
+        $model->updatedAt = date('Y-m-d H:i:s');
+        $model->save();
+    }    
+    protected function getModelName(String $section)
+    {
+        $model = Profile::find()->where(['key_profile' => $section])->One();
+        return $model['value_profile'];
     }
     public function savePaper(String $modelfilename)
     {
