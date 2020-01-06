@@ -1,45 +1,19 @@
 <?php
-
 use yii\helpers\Html;
-use yii\grid\GridView;
-
-/* @var $this yii\web\View */
-/* @var $searchModel app\modules\post\models\PostSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Posts';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="post-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<h2>Заголовки страниц</h2>
 
-    <p>
-        <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Поиск по заголовкам.." title="Type in a name">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
-            'section',
-            'key',
-            'value:ntext',
-            //'status',
-            //'rule',
-            //'tag',
-            //'createdAt',
-            //'updatedAt',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
-
-</div>
+<ul id="myUL">
+<?php foreach($permissions as $key => $perm){ ?>
+    <li>
+    <?php echo Html::a(
+        $perm->description, 
+        ['/post/post/index/'.$perm->name], 
+        ['class' => 'btn btn-link ']
+    ); ?>
+    </li>
+<?php } ?>
+</ul>

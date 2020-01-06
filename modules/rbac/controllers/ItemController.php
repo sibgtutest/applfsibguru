@@ -36,7 +36,8 @@ class ItemController extends Controller
                     ], 
                     [
                         'actions' => ['create'],
-                        'allow' => false,
+                        'allow' => true,
+                        'roles' => ['admin'],
                     ],  
                     [
                         'actions' => ['update'],

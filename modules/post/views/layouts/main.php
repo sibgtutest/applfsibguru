@@ -12,7 +12,6 @@ use app\assets\AppAsset;
 use yii\helpers\Url;
 
 AppAsset::register($this);
-Yii::setAlias('@lfsibguru', 'http://www.lfsibgu.ru/');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -31,8 +30,7 @@ Yii::setAlias('@lfsibguru', 'http://www.lfsibgu.ru/');
 <div class="wrap">
     <?php
     NavBar::begin([
-        //'brandLabel' => Yii::$app->name,
-        'brandLabel' => 'test.lfsibgu.ru',
+        'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -41,7 +39,14 @@ Yii::setAlias('@lfsibguru', 'http://www.lfsibgu.ru/');
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'ЭИОС', 'url' => ['/eiee/default/index']],
+            ['label' => 'Home', 'url' => ['/administrator/default/index']],
+            ['label' => 'Gii', 'url' => ['/gii']],
+            ['label' => 'Post', 'url' => ['/post/default/index']],
+            ['label' => 'Manager', 'url' => ['/manager/default/index']],
+            ['label' => 'User', 'url' => ['/user/user/index']],
+            ['label' => 'Rbac', 'url' => ['/rbac/default/index']],
+            ['label' => 'Setting', 'url' => ['/setting/default/index']],
+            ['label' => 'SignUp', 'url' => ['/user/default/signup'], 'visible' => Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -62,8 +67,8 @@ Yii::setAlias('@lfsibguru', 'http://www.lfsibgu.ru/');
     <div class="container">
         <?= Breadcrumbs::widget([
             'homeLink' => [
-                'label' => 'Портфолио',
-                'url' => Url::toRoute('/eiee/default/profile1'),
+                'label' => 'Страница',
+                'url' => Url::toRoute('/post/default/index'),
             ],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
