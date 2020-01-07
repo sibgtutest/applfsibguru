@@ -14,7 +14,7 @@ use yii\helpers\Html;
             <ul class="list-group">
                 <?= Html::a('
                     Учебная работа студента
-                ', ['/eiee/academic/index'], ['class' => 'list-group-item']) ?>
+                ', ['academic/index', 'section' => 'academic'], ['class' => 'list-group-item']) ?>
                 <?= Html::a('
                     Статьи студента
                 ', ['/eiee/paper/index'], ['class' => 'list-group-item']) ?>             

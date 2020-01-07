@@ -100,7 +100,7 @@ $config = [
                 '<module:\w+>/scientific/' => '<module>/scientific/index',
                 '<module:\w+>/public/' => '<module>/public/index',
                 '<module:\w+>/sport/' => '<module>/sport/index',
-                '<module:\w+>/profile/' => '<module>/profile/index',
+                '/eiee/profile/' => '<module>/profile/index',
 
                 //'<module:\w+>/<action:\w+>/' => '<module>/default/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/' 

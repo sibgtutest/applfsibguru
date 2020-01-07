@@ -49,16 +49,56 @@ class AcademicController extends Controller
      * Lists all Profile models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($section = NULL)
     {
+        if ($section == NULL){
+            return $this->goHome();
+        };
+        $desc = Profile::find()->where(['key_profile' => $section])->One();
         $userid = \Yii::$app->user->identity->id;
-        $query = Profile::find()->where(['rule' => $userid, 'section' => 'Academic']);
+        $query = Profile::find()->where(['rule' => $userid, 'section' => $section]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query, 
         ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'section' => $section,
+            'desc' => $desc['value_profile'],
+        ]);
+    }
+
+    /**
+     * Creates a new Profile model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate($section = NULL)
+    {
+        if ($section == NULL){
+            return $this->goHome();
+        };
+        $desc = Profile::find()->where(['key_profile' => $section])->One();
+
+        $model = new FileCreate();
+        $userid= \Yii::$app->user->identity->id;
+        
+        if(Yii::$app->request->post()) {
+             $model->load(Yii::$app->request->post());
+             
+             $model->filename = UploadedFile::getInstance($model, 'filename');
+             
+             if ($model->validate()) {
+                  $path = Yii::$app->params['pathUploads'] . $userid . '/';
+                  $filename = $model->filename;
+                  $model->filename->saveAs( $path . $section . '_' . $filename);
+                  $model->save_($section, $filename);
+                  return $this->redirect([$section . '/index', 'section' => $section]);
+             }
+        }
+        return $this->render('create', [
+            'model' => $model,
+            'desc' => $desc['value_profile'],
         ]);
     }
 
@@ -73,7 +113,7 @@ class AcademicController extends Controller
         $dataProvider = Profile::find()->where(['id' => $id])->limit(1)->one();
         $filename = $dataProvider->key_profile;
         $i = \Yii::$app->user->identity->id;
-        $file = \Yii::$app->params['pathUploads'] . $i . '/' . 'Academic_' . $filename;
+        $file = \Yii::$app->params['pathUploads'] . $i . '/' . $dataProvider->section . '_' . $filename;
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="'.basename($file).'"');
         header('Expires: 0');
@@ -85,35 +125,6 @@ class AcademicController extends Controller
     }
 
     /**
-     * Creates a new Profile model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new FileCreate();
-        $userid= \Yii::$app->user->identity->id;
-        
-        if(Yii::$app->request->post()) {
-             $model->load(Yii::$app->request->post());
-             
-             $model->filename = UploadedFile::getInstance($model, 'filename');
-             
-             if ($model->validate()) {
-                  $path = Yii::$app->params['pathUploads'] . $userid . '/';
-                  $filename = $model->filename;
-                  $model->filename->saveAs( $path . 'Academic_' . $filename);
-                  $model->saveAcademic($filename);
-                  return $this->redirect(['academic/index']);
-             }
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
      * Updates an existing Profile model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -122,7 +133,9 @@ class AcademicController extends Controller
      */
     public function actionUpdate($id)
     {
+        
         $model = $this->findModel($id);
+        $desc = Profile::find()->where(['key_profile' => $model['section']])->One();
         $userid= \Yii::$app->user->identity->id;
         $dataProvider = new ActiveDataProvider([
             'query' => Profile::find()->where(['rule' => $userid]),
@@ -130,12 +143,14 @@ class AcademicController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->redirect(
                 \yii\helpers\Url::toRoute([
-                    '/eiee/academic/index', 
+                    '/eiee/'.$model['section'].'/index', 
                     'dataProvider' => $dataProvider]));
         }
         return $this->render('update', [
-            'model' => $model,
-        ]);
+                'model' => $model,
+                'section' => $model['section'],
+                'desc' => $desc['value_profile'],
+            ]);
     }
 
     /**
@@ -147,12 +162,14 @@ class AcademicController extends Controller
      */
     public function actionDelete($id)
     {
+        $model = $this->findModel($id);
         $userid= \Yii::$app->user->identity->id;
         $path = \Yii::$app->params['pathUploads'] . $userid . '/';
-        unlink( $path . 'Academic_' . $this->findModel($id)->key_profile );
+        unlink( $path . $model['section'] . '_' . $this->findModel($id)->key_profile );
 
-        $this->findModel($id)->delete();
-        return $this->redirect(['index']);
+        $model->delete();
+        //return $this->redirect(['index']);
+        return $this->redirect([$model['section'] . '/index', 'section' => $model['section']]);
     }
 
     public function actionSave($id)
