@@ -45,8 +45,10 @@ class FileCreate extends Model
     public function save_(String $section, String $modelfilename)
     {
         $model = new Profile();
+        $desc = Profile::find()->where(['key_profile' => $section])->One();
        // $model->name = $this->getModelName($section);
-        $model->name = 'Учебная работа студента';
+        $model->name = $desc['value_profile'];
+       // $model->name = 'Учебная работа студента';
         $model->section = $section;
         $model->key_profile = $modelfilename;
         $model->value_profile = $this->value_profile;

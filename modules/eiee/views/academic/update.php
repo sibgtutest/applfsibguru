@@ -5,10 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\eiee\models\Profile */
 
-$this->title = 'Обновить: ' . 'Учебная работа студента';
-$this->params['breadcrumbs'][] = ['label' => 'Учебная работа студента', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => 'Посмотреть', 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Обновить';
+$this->title = 'Изменить:';
+$this->params['breadcrumbs'][] = ['label' => $desc, 'url' => [$section . '/index', 'section' => $section]];
 $action = 'update';
 ?>
 <div class="profile-update">

@@ -54,6 +54,7 @@ class AcademicController extends Controller
         if ($section == NULL){
             return $this->goHome();
         };
+        $desc = Profile::find()->where(['key_profile' => $section])->One();
         $userid = \Yii::$app->user->identity->id;
         $query = Profile::find()->where(['rule' => $userid, 'section' => $section]);
         $dataProvider = new ActiveDataProvider([
@@ -63,6 +64,7 @@ class AcademicController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'section' => $section,
+            'desc' => $desc['value_profile'],
         ]);
     }
 
@@ -76,6 +78,8 @@ class AcademicController extends Controller
         if ($section == NULL){
             return $this->goHome();
         };
+        $desc = Profile::find()->where(['key_profile' => $section])->One();
+
         $model = new FileCreate();
         $userid= \Yii::$app->user->identity->id;
         
@@ -94,6 +98,7 @@ class AcademicController extends Controller
         }
         return $this->render('create', [
             'model' => $model,
+            'desc' => $desc['value_profile'],
         ]);
     }
 
@@ -128,7 +133,9 @@ class AcademicController extends Controller
      */
     public function actionUpdate($id)
     {
+        
         $model = $this->findModel($id);
+        $desc = Profile::find()->where(['key_profile' => $model['section']])->One();
         $userid= \Yii::$app->user->identity->id;
         $dataProvider = new ActiveDataProvider([
             'query' => Profile::find()->where(['rule' => $userid]),
@@ -139,7 +146,11 @@ class AcademicController extends Controller
                     '/eiee/'.$model['section'].'/index', 
                     'dataProvider' => $dataProvider]));
         }
-        return $this->render('update', ['model' => $model,]);
+        return $this->render('update', [
+                'model' => $model,
+                'section' => $model['section'],
+                'desc' => $desc['value_profile'],
+            ]);
     }
 
     /**
@@ -151,12 +162,14 @@ class AcademicController extends Controller
      */
     public function actionDelete($id)
     {
+        $model = $this->findModel($id);
         $userid= \Yii::$app->user->identity->id;
         $path = \Yii::$app->params['pathUploads'] . $userid . '/';
-        unlink( $path . 'Academic_' . $this->findModel($id)->key_profile );
+        unlink( $path . $model['section'] . '_' . $this->findModel($id)->key_profile );
 
-        $this->findModel($id)->delete();
-        return $this->redirect(['index']);
+        $model->delete();
+        //return $this->redirect(['index']);
+        return $this->redirect([$model['section'] . '/index', 'section' => $model['section']]);
     }
 
     public function actionSave($id)

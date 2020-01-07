@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\eiee\models\ProfileSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Учебная работа студента';
+$this->title = $desc;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profile-index">
