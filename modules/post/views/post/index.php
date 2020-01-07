@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $description;
                     'delete' => function ($url, $model) {
                         return Html::a('<span>Удалить</span>', $url, [
                             'data' => [
-                                'confirm' => 'Вы уверены, что хотите удалить этот документ?',
+                                'confirm' => 'Вы уверены, что хотите удалить эту запись?',
                                 'method' => 'post',
                             ],
                         ]);
