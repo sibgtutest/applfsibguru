@@ -16,5 +16,11 @@ $(document).ready(function(){
       $("#myList3 li").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
-    });    
+    });  
+    $("#myInput4").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myList4 li").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });  
   });
