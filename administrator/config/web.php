@@ -58,6 +58,7 @@ $config = [
         */
         'urlManager' => [
             'enablePrettyUrl' => true,
+            //'enableStrictParsing' => true,
             'showScriptName' => true,
             'rules' => [
                 //'/' => 'site/index',
