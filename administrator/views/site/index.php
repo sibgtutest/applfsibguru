@@ -18,11 +18,19 @@ $this->title = 'Общие сведения';
         </ul>        
     </div>
     <div class="col-sm-8">
-        <input class="form-control" id="myInput2" type="text" placeholder="Список администраторов">
-        <ul id="myList2">
+        <input class="form-control" id="myInput4" type="text" placeholder="Список администраторов">
+        <ul id="myList4">
         <?php foreach ($amdins as $amdin): ?>
             <li>
                 <?= Html::encode("{$amdin->username} - {$stud->email}") ?>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+        <input class="form-control" id="myInput2" type="text" placeholder="Список преподавателей">
+        <ul id="myList2">
+        <?php foreach ($stafs as $staf): ?>
+            <li>
+                <?= Html::encode("{$staf->username} - {$staf->email}") ?>
             </li>
         <?php endforeach; ?>
         </ul>

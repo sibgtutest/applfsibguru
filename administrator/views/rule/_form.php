@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use app\models\User;
+use app\models\Staf;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Rule */
@@ -14,7 +14,7 @@ use app\models\User;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'role')->dropDownList(ArrayHelper::map(User::find()->all(),'username','username')); ?>
+    <?= $form->field($model, 'role')->dropDownList(ArrayHelper::map(Staf::find()->all(),'username','username')); ?>
 
     <?= $form->field($model, 'permissions')->textInput(['maxlength' => true]) ?>
 

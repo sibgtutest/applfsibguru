@@ -8,28 +8,30 @@ use yii\filters\AccessControl;
 use app\models\LoginForm;
 use app\models\SignupForm;
 use app\models\SignStud;
+use app\models\SignStaf;
 use app\models\User;
 use app\models\Stud;
+use app\models\Staf;
 use yii\filters\VerbFilter;
 
 class SiteController extends Controller
 {
     /**
      * {@inheritdoc}
-     */
+    */
     public function behaviors()
     {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup', 'index', 'login', 'signstud', 'error'],
+                'only' => ['logout', 'signup', 'index', 'login', 'signstud', 'signstaf', 'error'],
                 'rules' => [
                     [
                         'actions' => ['logout', 'login', 'error'],
                         'allow' => true,
                     ],                   
                     [
-                        'actions' => ['signup', 'index', 'signstud'],
+                        'actions' => ['signup', 'index', 'signstud', 'signstaf'],
                         'allow' => true,
                         'roles' => ['viewAdminPage'],
                     ],
@@ -42,7 +44,7 @@ class SiteController extends Controller
                 ],
             ],
         ];
-    }
+    } 
 
     /**
      * Displays homepage.
@@ -52,17 +54,19 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $amdins = User::find('username', 'email')->all();
+        $stafs = Staf::find('username','email')->all();
         $studs = Stud::find('username','email')->all();
         $permissions = [];
-        foreach ($amdins as $amdin){
-            $id = (User::findByUsername($amdin->username))->getId();
-            array_push($permissions, [$amdin->username => Yii::$app->authManager->getPermissionsByUser($id)]);
+        foreach ($stafs as $staf){
+            $id = (Staf::findByUsername($staf->username))->getId();
+            array_push($permissions, [$staf->username => Yii::$app->authManager->getPermissionsByUser($id)]);
         }
         
 
         return $this->render('index', [
             'amdins' => $amdins, 
             'studs' => $studs,
+            'stafs' => $stafs,
             'permissions' => $permissions,
         ]);
     }
@@ -139,8 +143,26 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     } 
+
+    /**
+     * Форма регистрации.
+     *
+     * @return mixed
+     */
+    public function actionSignstaf()
+    {
+        $model = new SignStaf();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                return $this->goHome();
+            }
+        }
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    } 
     public function actionError()
     {
         return $this->render('error'); 
-    }    
+    }      
 }

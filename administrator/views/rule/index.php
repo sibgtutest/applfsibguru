@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use app\models\User;
+use app\models\Staf;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'role'
             [
                 'attribute'=>'role',
-                'filter' => ArrayHelper::map(User::find()->asArray()->all(), 'username', 'username'),
+                'filter' => ArrayHelper::map(Staf::find()->asArray()->all(), 'username', 'username'),
             ],
             'permissions',
             'description:ntext',

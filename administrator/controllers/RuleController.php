@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Rule;
-use app\models\User;
+use app\models\Staf;
 use app\models\RuleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -45,11 +45,19 @@ class RuleController extends Controller
     public function actionInit()
     {
         $rules = Rule::find()->select(['role'])->distinct()->all();
-        $users = User::find()->all();
+        $stafs = Staf::find()->all();
 
         $auth = \Yii::$app->authManager;
 
         $auth->removeAll(); //На всякий случай удаляем старые данные из БД...
+
+        $admin = $auth->createRole('admin');
+        $auth->add($admin);
+        $viewAdminPage = $auth->createPermission('viewAdminPage');
+        $viewAdminPage->description = 'Просмотр админки';
+        $auth->add($viewAdminPage);
+        $auth->addChild($admin, $viewAdminPage);
+        $auth->assign($admin, 1); 
 
         foreach ($rules as $rule){
             $roles = Rule::find()->where(['role' => $rule])->all();
@@ -61,7 +69,7 @@ class RuleController extends Controller
                 $auth->add($perm);
                 $auth->addChild($role1, $perm);
             }
-            $auth->assign($role1, (User::findByUsername($rule->role))->getId()); 
+            $auth->assign($role1, (Staf::findByUsername($rule->role))->getId()); 
 
         }
         return $this->redirect(['index']);  

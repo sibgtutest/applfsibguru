@@ -1,0 +1,210 @@
+2020-01-09 04:07:26 [127.0.0.1][1][iqrovn04bjfjot94e4oaecio02][error][Error] Error: Class 'app\assets\AppAsset' not found in /home/farid/applfsibguru/modules/eiee/views/layouts/main.php:14
+Stack trace:
+#0 /home/farid/applfsibguru/vendor/yiisoft/yii2/base/View.php(348): require()
+#1 /home/farid/applfsibguru/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/home/farid/app...', Array)
+#2 /home/farid/applfsibguru/vendor/yiisoft/yii2/base/Controller.php(401): yii\base\View->renderFile('/home/farid/app...', Array, Object(app\modules\eiee\controllers\DefaultController))
+#3 /home/farid/applfsibguru/vendor/yiisoft/yii2/base/Controller.php(387): yii\base\Controller->renderContent('\n<div class="ei...')
+#4 /home/farid/applfsibguru/modules/eiee/controllers/DefaultController.php(53): yii\base\Controller->render('index')
+#5 [internal function]: app\modules\eiee\controllers\DefaultController->actionIndex()
+#6 /home/farid/applfsibguru/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#7 /home/farid/applfsibguru/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#8 /home/farid/applfsibguru/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('index', Array)
+#9 /home/farid/applfsibguru/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('eiee/default/in...', Array)
+#10 /home/farid/applfsibguru/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#11 /home/farid/applfsibguru/web/index.php(12): yii\base\Application->run()
+#12 {main}
+2020-01-09 04:07:25 [127.0.0.1][1][iqrovn04bjfjot94e4oaecio02][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'iqrovn04bjfjot94e4oaecio02'
+    '_csrf' => 'b026e24babf6de66b69e9317f5089b198d97ff0874b25c44a9f580698d44e68da:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"05I2qBrDZqhApv-FKiYIWpgyELXAP95N\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => 'http://localhost/administrator/index.php'
+    '__id' => 1
+]
+
+$_SERVER = [
+    'DOCUMENT_ROOT' => '/home/farid/applfsibguru/web'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '41722'
+    'SERVER_SOFTWARE' => 'PHP 7.2.24-0ubuntu0.18.04.1 Development Server'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_PORT' => '8080'
+    'REQUEST_URI' => '/eiee/default/index'
+    'REQUEST_METHOD' => 'GET'
+    'SCRIPT_NAME' => '/index.php'
+    'SCRIPT_FILENAME' => '/home/farid/applfsibguru/web/index.php'
+    'PATH_INFO' => '/eiee/default/index'
+    'PHP_SELF' => '/index.php/eiee/default/index'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'PHPSESSID=iqrovn04bjfjot94e4oaecio02; _csrf=b026e24babf6de66b69e9317f5089b198d97ff0874b25c44a9f580698d44e68da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%2205I2qBrDZqhApv-FKiYIWpgyELXAP95N%22%3B%7D'
+    'REQUEST_TIME_FLOAT' => 1578542845.9855
+    'REQUEST_TIME' => 1578542845
+]
+2020-01-09 04:08:37 [127.0.0.1][1][iqrovn04bjfjot94e4oaecio02][error][yii\web\HttpException:404] yii\web\NotFoundHttpException: Страница не найдена. in /home/farid/applfsibguru/vendor/yiisoft/yii2/web/Request.php:287
+Stack trace:
+#0 /home/farid/applfsibguru/vendor/yiisoft/yii2/web/Application.php(82): yii\web\Request->resolve()
+#1 /home/farid/applfsibguru/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/farid/applfsibguru/web/index.php(12): yii\base\Application->run()
+#3 {main}
+2020-01-09 04:08:37 [127.0.0.1][1][iqrovn04bjfjot94e4oaecio02][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'iqrovn04bjfjot94e4oaecio02'
+    '_csrf' => '1e8f10ba93e4cb3f137cb8c56e2d1ff5a30740074e0273b83e8c720aff38320da:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"xPAvlnjGno-dEReofqT52nXtVH7kRkp5\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => 'http://localhost/administrator/index.php'
+    '__id' => 1
+]
+
+$_SERVER = [
+    'DOCUMENT_ROOT' => '/home/farid/applfsibguru/web'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '41870'
+    'SERVER_SOFTWARE' => 'PHP 7.2.24-0ubuntu0.18.04.1 Development Server'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_PORT' => '8080'
+    'REQUEST_URI' => '/administrator/'
+    'REQUEST_METHOD' => 'GET'
+    'SCRIPT_NAME' => '/index.php'
+    'SCRIPT_FILENAME' => '/home/farid/applfsibguru/web/index.php'
+    'PATH_INFO' => '/administrator/'
+    'PHP_SELF' => '/index.php/administrator/'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'PHPSESSID=iqrovn04bjfjot94e4oaecio02; _csrf=1e8f10ba93e4cb3f137cb8c56e2d1ff5a30740074e0273b83e8c720aff38320da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22xPAvlnjGno-dEReofqT52nXtVH7kRkp5%22%3B%7D'
+    'REQUEST_TIME_FLOAT' => 1578542917.9786
+    'REQUEST_TIME' => 1578542917
+]
+2020-01-09 04:09:38 [127.0.0.1][1][4d1mde6r5tmebl4m8smhg7qsos][error][yii\web\HttpException:404] yii\web\NotFoundHttpException: Страница не найдена. in /home/farid/applfsibguru/vendor/yiisoft/yii2/web/Request.php:287
+Stack trace:
+#0 /home/farid/applfsibguru/vendor/yiisoft/yii2/web/Application.php(82): yii\web\Request->resolve()
+#1 /home/farid/applfsibguru/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/farid/applfsibguru/web/index.php(12): yii\base\Application->run()
+#3 {main}
+2020-01-09 04:09:38 [127.0.0.1][1][4d1mde6r5tmebl4m8smhg7qsos][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '4d1mde6r5tmebl4m8smhg7qsos'
+    '_identity' => '15e933631e00d9c5451ba07d39d98ca9a01adea6d4769eb42f9f7050e1ca9fbfa:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[1,\"bnLMGTGy_llKwXKCQ29oeFtc7psYvEer\",2592000]\";}'
+    '_csrf' => 'a9d14e4f4de15ea7ee57dc1b22f56d225cd95dfbc28c9deb07312c893e9c148ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"X2_V0pqjuMLetVZxDpDsWzrwDlywpM6a\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 1
+]
+
+$_SERVER = [
+    'DOCUMENT_ROOT' => '/home/farid/applfsibguru/web'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '42040'
+    'SERVER_SOFTWARE' => 'PHP 7.2.24-0ubuntu0.18.04.1 Development Server'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_PORT' => '8080'
+    'REQUEST_URI' => '/administrator/'
+    'REQUEST_METHOD' => 'GET'
+    'SCRIPT_NAME' => '/index.php'
+    'SCRIPT_FILENAME' => '/home/farid/applfsibguru/web/index.php'
+    'PATH_INFO' => '/administrator/'
+    'PHP_SELF' => '/index.php/administrator/'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'PHPSESSID=4d1mde6r5tmebl4m8smhg7qsos; _identity=15e933631e00d9c5451ba07d39d98ca9a01adea6d4769eb42f9f7050e1ca9fbfa%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22bnLMGTGy_llKwXKCQ29oeFtc7psYvEer%22%2C2592000%5D%22%3B%7D; _csrf=a9d14e4f4de15ea7ee57dc1b22f56d225cd95dfbc28c9deb07312c893e9c148ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22X2_V0pqjuMLetVZxDpDsWzrwDlywpM6a%22%3B%7D'
+    'REQUEST_TIME_FLOAT' => 1578542978.0999
+    'REQUEST_TIME' => 1578542978
+]
+2020-01-09 04:09:48 [127.0.0.1][1][-][error][yii\i18n\PhpMessageSource::loadFallbackMessages] The message file for category 'app' does not exist: /home/farid/applfsibguru/messages/ru-RU/app.php Fallback file does not exist as well: /home/farid/applfsibguru/messages/ru/app.php
+    in /home/farid/applfsibguru/modules/administrator/views/default/index.php:10
+    in /home/farid/applfsibguru/modules/administrator/controllers/DefaultController.php:42
+2020-01-09 04:09:48 [127.0.0.1][1][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '4d1mde6r5tmebl4m8smhg7qsos'
+    '_identity' => '15e933631e00d9c5451ba07d39d98ca9a01adea6d4769eb42f9f7050e1ca9fbfa:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[1,\"bnLMGTGy_llKwXKCQ29oeFtc7psYvEer\",2592000]\";}'
+    '_csrf' => 'a9d14e4f4de15ea7ee57dc1b22f56d225cd95dfbc28c9deb07312c893e9c148ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"X2_V0pqjuMLetVZxDpDsWzrwDlywpM6a\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 1
+]
+
+$_SERVER = [
+    'DOCUMENT_ROOT' => '/home/farid/applfsibguru/web'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '42070'
+    'SERVER_SOFTWARE' => 'PHP 7.2.24-0ubuntu0.18.04.1 Development Server'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_PORT' => '8080'
+    'REQUEST_URI' => '/administrator/default/index'
+    'REQUEST_METHOD' => 'GET'
+    'SCRIPT_NAME' => '/index.php'
+    'SCRIPT_FILENAME' => '/home/farid/applfsibguru/web/index.php'
+    'PATH_INFO' => '/administrator/default/index'
+    'PHP_SELF' => '/index.php/administrator/default/index'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'PHPSESSID=4d1mde6r5tmebl4m8smhg7qsos; _identity=15e933631e00d9c5451ba07d39d98ca9a01adea6d4769eb42f9f7050e1ca9fbfa%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22bnLMGTGy_llKwXKCQ29oeFtc7psYvEer%22%2C2592000%5D%22%3B%7D; _csrf=a9d14e4f4de15ea7ee57dc1b22f56d225cd95dfbc28c9deb07312c893e9c148ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22X2_V0pqjuMLetVZxDpDsWzrwDlywpM6a%22%3B%7D'
+    'REQUEST_TIME_FLOAT' => 1578542988.7293
+    'REQUEST_TIME' => 1578542988
+]

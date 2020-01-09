@@ -38,9 +38,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
             !Yii::$app->user->isGuest ? ( ['label' => 'Регистрация администраторов', 'url' => ['/site/signup']] ) : ( '' ),
             !Yii::$app->user->isGuest ? ( ['label' => 'Регистрация студентов', 'url' => ['/site/signstud']] ) : ( '' ),
+            !Yii::$app->user->isGuest ? ( ['label' => 'Регистрация преподавателей', 'url' => ['/site/signstaf']] ) : ( '' ),
             !Yii::$app->user->isGuest ? ( ['label' => 'Разрешения', 'url' => ['/rule/index']] ) : ( '' ),
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/site/login']]
