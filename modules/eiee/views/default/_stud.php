@@ -16,21 +16,21 @@ use yii\helpers\Html;
                     Учебная работа студента
                 ', ['academic/index', 'section' => 'academic'], ['class' => 'list-group-item']) ?>
                 <?= Html::a('
-                    Статьи студента
-                ', ['/eiee/paper/index'], ['class' => 'list-group-item']) ?>             
+                    Статьи студента 
+                ', ['academic/index', 'section' => 'paper'], ['class' => 'list-group-item']) ?>             
             </ul>
         </div>
         <div class="col-sm-4">
             <ul class="list-group">
                 <?= Html::a('
-                    Научные достижения студента
-                ', ['/eiee/scientific/index'], ['class' => 'list-group-item']) ?>     
+                    Научные достижения студента 
+                ', ['academic/index', 'section' => 'scientific'], ['class' => 'list-group-item']) ?>     
                 <?= Html::a('
-                    Общественные достижения студента
-                ', ['/eiee/public/index'], ['class' => 'list-group-item']) ?>  
+                    Общественные достижения студента 
+                ', ['academic/index', 'section' => 'public'], ['class' => 'list-group-item']) ?>  
                 <?= Html::a('
-                    Спортивные достижения студента
-                ', ['/eiee/sport/index'], ['class' => 'list-group-item']) ?>                              
+                    Спортивные достижения студента 
+                ', ['academic/index', 'section' => 'sport'], ['class' => 'list-group-item']) ?>                              
             </ul>
         </div>          
         <div class="col-sm-4">

@@ -55,6 +55,9 @@ class AcademicController extends Controller
             return $this->goHome();
         };
         $desc = Profile::find()->where(['key_profile' => $section])->One();
+        if ($desc['value_profile'] == NULL){
+            return $this->goHome();
+        };
         $userid = \Yii::$app->user->identity->id;
         $query = Profile::find()->where(['rule' => $userid, 'section' => $section]);
         $dataProvider = new ActiveDataProvider([
@@ -79,7 +82,9 @@ class AcademicController extends Controller
             return $this->goHome();
         };
         $desc = Profile::find()->where(['key_profile' => $section])->One();
-
+        if ($desc['value_profile'] == NULL){
+            return $this->goHome();
+        };
         $model = new FileCreate();
         $userid= \Yii::$app->user->identity->id;
         
@@ -111,6 +116,10 @@ class AcademicController extends Controller
     public function actionView($id)
     {
         $dataProvider = Profile::find()->where(['id' => $id])->limit(1)->one();
+        $userid= \Yii::$app->user->identity->id;
+        if ($dataProvider['rule'] <> $userid){
+            return $this->goHome();
+        }; 
         $filename = $dataProvider->key_profile;
         $i = \Yii::$app->user->identity->id;
         $file = \Yii::$app->params['pathUploads'] . $i . '/' . $dataProvider->section . '_' . $filename;
@@ -133,10 +142,19 @@ class AcademicController extends Controller
      */
     public function actionUpdate($id)
     {
-        
         $model = $this->findModel($id);
-        $desc = Profile::find()->where(['key_profile' => $model['section']])->One();
+        
         $userid= \Yii::$app->user->identity->id;
+        if ($model['rule'] <> $userid){
+            return $this->goHome();
+        }; 
+        $desc = Profile::find()->where(['key_profile' => $model['section']])->One();
+        if ($desc['value_profile'] == NULL){
+            return $this->goHome();
+        };        
+        if ($desc['rule'] == NULL){
+            return $this->goHome();
+        };
         $dataProvider = new ActiveDataProvider([
             'query' => Profile::find()->where(['rule' => $userid]),
         ]);
@@ -164,6 +182,9 @@ class AcademicController extends Controller
     {
         $model = $this->findModel($id);
         $userid= \Yii::$app->user->identity->id;
+        if ($model['rule'] <> $userid){
+            return $this->goHome();
+        }; 
         $path = \Yii::$app->params['pathUploads'] . $userid . '/';
         unlink( $path . $model['section'] . '_' . $this->findModel($id)->key_profile );
 
@@ -174,6 +195,11 @@ class AcademicController extends Controller
 
     public function actionSave($id)
     {
+        $model = $this->findModel($id);
+        $userid= \Yii::$app->user->identity->id;
+        if ($model['rule'] <> $userid){
+            return $this->goHome();
+        }; 
         \Yii::$app->db->createCommand()
              ->update('profile', ['status' => 0], ['id' => $id])
              ->execute();

@@ -13,34 +13,31 @@ use yii\helpers\Html;
         <div class="col-sm-4">
             <ul class="list-group">
                 <?= Html::a('
-                    Учебная работа студента
-                ', ['academic/index', 'section' => 'academic'], ['class' => 'list-group-item']) ?>
+                    Научная работа преподавателя
+                ', ['academic/index', 'section' => 'science'], ['class' => 'list-group-item']) ?>
                 <?= Html::a('
-                    Статьи студента
-                ', ['/eiee/paper/index'], ['class' => 'list-group-item']) ?>             
+                    Личные достижения преподавателя
+                ', ['academic/index', 'section' => 'personal'], ['class' => 'list-group-item']) ?>  
+                <?= Html::a('
+                    Публикации преподавателя
+                ', ['academic/index', 'section' => 'publication'], ['class' => 'list-group-item']) ?>                             
             </ul>
         </div>
         <div class="col-sm-4">
             <ul class="list-group">
                 <?= Html::a('
-                    Научные достижения студента
-                ', ['/eiee/scientific/index'], ['class' => 'list-group-item']) ?>     
+                    Повышение квалификации преподавателя
+                ', ['academic/index', 'section' => 'professional'], ['class' => 'list-group-item']) ?>     
                 <?= Html::a('
-                    Общественные достижения студента
-                ', ['/eiee/public/index'], ['class' => 'list-group-item']) ?>  
-                <?= Html::a('
-                    Спортивные достижения студента
-                ', ['/eiee/sport/index'], ['class' => 'list-group-item']) ?>                              
+                    Учебно-методическая работа преподавателя
+                ', ['academic/index', 'section' => 'educational'], ['class' => 'list-group-item']) ?>                              
             </ul>
         </div>          
         <div class="col-sm-4">
             <ul class="list-group">
                 <?= Html::a('
                     Контактные данные
-                ', ['/eiee/profile/index'], ['class' => 'list-group-item']) ?>  
-                <a href="http://lfsibgu.ru/sveden/education/#docs" class="list-group-item">
-                    Учебный план
-                </a>                
+                ', ['/eiee/profile/index'], ['class' => 'list-group-item']) ?>               
             </ul>
         </div>
     </div>
