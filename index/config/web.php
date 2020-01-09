@@ -43,11 +43,12 @@ $config = [
         
         'urlManager' => [
             'enablePrettyUrl' => true,
-            //'enableStrictParsing' => true,
+            'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-            //    '' => 'site/index',
+                //'' => 'site/index',
                 '<section:\w+>' => 'site/index',
+                //index.php?r=site/index&section=viewAAAAAAAAAAaPage
             ],
         ],
         

@@ -58,13 +58,17 @@ $config = [
         */
         'urlManager' => [
             'enablePrettyUrl' => true,
-            //'enableStrictParsing' => true,
-            'showScriptName' => true,
+            'enableStrictParsing' => true,
+            'showScriptName' => false,
             'rules' => [
-            //'/' => 'site/index',
-            //    'about' => 'site/about',
-            //    'contact' => 'site/contact',
-            //    'login' => 'site/login',
+            '' => 'site/index',
+            'login' => 'site/login',
+            'logout' => 'site/logout',
+            '<section:\w+>' => 'post/index',
+            
+            '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
+            //'<controller>/<action>/<id:\w+>' => '<controller>/<action>',
+            '<controller:\w+>/<action:\w+>/<section:\w+>' => '<controller>/<action>',
             ],
         ],    
     ],
