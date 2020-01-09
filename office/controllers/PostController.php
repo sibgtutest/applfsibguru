@@ -18,7 +18,7 @@ class PostController extends Controller
     //public $layout =  '@app/post/views/layouts/main.php';
     /**
      * {@inheritdoc}
-     
+    */ 
     public function behaviors()
     {
         return [
@@ -50,7 +50,7 @@ class PostController extends Controller
                 ],
             ],
         ];
-    }*/
+    }
 
     /**
      * Lists all Post models.
