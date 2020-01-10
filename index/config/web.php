@@ -5,6 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name' => 'lfsibgu.ru',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\controllers',
@@ -46,8 +47,9 @@ $config = [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                //'' => 'site/index',
+                '' => 'site/default',
                 '<section:\w+>' => 'site/index',
+                //'' => '/viewAAAAAAAAAAaPage',
                 //index.php?r=site/index&section=viewAAAAAAAAAAaPage
             ],
         ],

@@ -47,7 +47,7 @@ $config = [
             'rules' => [
             ],
         ],
-        */
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -57,7 +57,7 @@ $config = [
                 'contact' => 'site/contact',
                 'login' => 'site/login',
             ],
-        ],    
+        ],*/    
     ],
     'params' => $params,
     'defaultRoute' => 'site/index'

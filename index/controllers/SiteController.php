@@ -8,19 +8,15 @@ use app\models\Post;
 
 class SiteController extends Controller
 {
+    public function actionDefault()
+    {
+        return $this->redirect(['site/index', 'section' => 'its']);
+    }    
     /**
      * Displays homepage.
      *
      * @return string
     */ 
-    public function actionIndex2()
-    {
-        return $this->render('index2');
-    }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
     public function actionIndex($section = NULL)
     {
         /*if ($section == NULL){
@@ -73,4 +69,8 @@ class SiteController extends Controller
         $query = Post::find()->andWhere(['section' => $section])->asArray()->all();
         return $query;
     }    
+    public function actionError()
+    {
+        return $this->render('error'); 
+    }       
 }
