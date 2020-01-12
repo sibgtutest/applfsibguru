@@ -5,13 +5,22 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\Post;
-use yii2tech\filedb\Query;
 
 class SiteController extends Controller
 {
+   
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ]
+        ];
+    }  
+
     public function actionDefault()
     {
-        return $this->redirect(['site/index', 'section' => 'news']);
+        return $this->redirect(['site/index', 'section' => 'viewAAAAAAAAAAaPage']);
     }   
      
     /**
@@ -21,7 +30,14 @@ class SiteController extends Controller
     */ 
     public function actionIndex($section = NULL)
     {  
+        if ($section == NULL){
+            return $this->goHome();
+        };    
         $query = $this->getQuery($section);
+        if ($query == NULL){
+            return $this->goHome();
+            return 'goHome';
+        };
         $xml = $this->getXml($query);
         $result = $this->getResultDoc($xml);
         return $this->render('index', ['result' => $result]);
