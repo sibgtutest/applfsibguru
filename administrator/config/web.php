@@ -72,8 +72,6 @@ $config = [
                 'login' => 'site/login',
                 'logout' => 'site/logout',
                 'signup' => 'site/signup',
-                'signstud' => 'site/signstud',  
-                'signstaf' => 'site/signstaf',  
             ],
         ],   
     ],
