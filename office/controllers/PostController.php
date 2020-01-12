@@ -24,21 +24,15 @@ class PostController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index,create,update'],
+                'only' => ['index', 'create', 'update', 'view', 'delete'],
                 'rules' => [
                     [
-                        'actions' => ['index,create,update'],
+                        'actions' => ['index', 'create', 'update'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                ],
-            ],  
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['view,delete'],
-                'rules' => [
                     [
-                        'actions' => ['view,delete'],
+                        'actions' => ['view', 'delete'],
                         'allow' => false,
                     ],
                 ],
@@ -51,7 +45,14 @@ class PostController extends Controller
             ],
         ];
     }
-
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ]
+        ];
+    }  
     /**
      * Lists all Post models.
      * @return mixed
