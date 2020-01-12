@@ -11,6 +11,12 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+
+use yii2tech\filedb\Query;
+
+$query2 = new Query();
+$row = $query2->from('NavBar')->one();
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -28,13 +34,7 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
+    NavBar::begin($row);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         //'items' => [
@@ -50,6 +50,9 @@ AppAsset::register($this);
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
+        <?php 
+
+        var_dump($row); ?>
     </div>
 </div>
 

@@ -5,34 +5,26 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\Post;
+use yii2tech\filedb\Query;
 
 class SiteController extends Controller
 {
     public function actionDefault()
     {
         return $this->redirect(['site/index', 'section' => 'news']);
-    }    
+    }   
+     
     /**
      * Displays homepage.
      *
      * @return string
     */ 
     public function actionIndex($section = NULL)
-    {
-        /*if ($section == NULL){
-            return $this->goHome();
-        }; */       
+    {  
         $query = $this->getQuery($section);
-        /*if (empty($query)){
-            return $this->goHome();
-            return 'goHome';
-        };*/
         $xml = $this->getXml($query);
         $result = $this->getResultDoc($xml);
-        
         return $this->render('index', ['result' => $result]);
-
-        //return 'index';
     }
 
     protected function getResultDoc($xml)
@@ -49,18 +41,11 @@ class SiteController extends Controller
     {
         $xml = '<root>';
         foreach ($query as $value){
-            /*if ($value['key_post'] == 'Заголовок' && $value['status'] == 0) {
-                $xml .= '<'.$value['key_post'].'>' . $value['value_post'] . '</'.$value['key_post'].'>';
-            };
-            if ($value['key_post'] == 'Абзац' && $value['status'] == 0) {
-                $xml .= '<'.$value['key_post'].'>' . $value['value_post'] . '</'.$value['key_post'].'>';
-            };*/
             if ($value['status'] == 0) {
                 $xml .= '<'.$value['key_post'].'>' . $value['value_post'] . '</'.$value['key_post'].'>';
             };
         };
         $xml .= '</root>';
-        
         return $xml;
     }
 
@@ -69,6 +54,7 @@ class SiteController extends Controller
         $query = Post::find()->andWhere(['section' => $section])->asArray()->all();
         return $query;
     }    
+
     public function actionError()
     {
         return $this->render('error'); 
