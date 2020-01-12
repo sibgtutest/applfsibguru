@@ -23,7 +23,6 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\Staf',
-            'enableAutoLogin' => true,
         ],     
         'authManager' => [
             'class' => 'yii\rbac\DbManager',

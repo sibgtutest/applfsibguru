@@ -172,8 +172,5 @@ class RuleController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-    public function actionError()
-    {
-        return $this->render('error'); 
-    }       
+    
 }

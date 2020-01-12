@@ -18,6 +18,10 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'jj-YsBnnS9kOfYWmHwyKV81XyiIFwfck',
         ],
+        'filedb' => [
+            'class' => 'yii2tech\filedb\Connection',
+            'path' => '@app/data/static',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

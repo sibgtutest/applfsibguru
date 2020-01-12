@@ -24,7 +24,9 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        
+        'user' => [
+            'identityClass' => 'app\models\User',
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -55,10 +57,10 @@ $config = [
         */
         'urlManager' => [
             'enablePrettyUrl' => true,
-            //'enableStrictParsing' => true,
-            'showScriptName' => true,
+            'enableStrictParsing' => true,
+            'showScriptName' => false,
             'rules' => [
-            //'/' => 'site/index',
+            '' => 'site/index',
             //    'about' => 'site/about',
             //    'contact' => 'site/contact',
             //    'login' => 'site/login',
