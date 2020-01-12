@@ -10,7 +10,7 @@ class SiteController extends Controller
 {
     public function actionDefault()
     {
-        return $this->redirect(['site/index', 'section' => 'its']);
+        return $this->redirect(['site/index', 'section' => 'news']);
     }    
     /**
      * Displays homepage.
