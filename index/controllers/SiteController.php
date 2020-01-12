@@ -45,11 +45,15 @@ class SiteController extends Controller
 
     protected function getResultDoc($xml)
     {
-        $xmlDoc = \DOMDocument::loadXML($xml);
-        $xslDoc = \DomDocument::load(Yii::getAlias('@app').'/templates/1.xsl');
-        $proc = new \XSLTProcessor();
-        $proc->importStyleSheet($xslDoc);
-        $result = $proc->transformToXML($xmlDoc);
+        try {
+            $xmlDoc = \DOMDocument::loadXML($xml);
+            $xslDoc = \DomDocument::load(Yii::getAlias('@app').'/templates/1.xsl');
+            $proc = new \XSLTProcessor();
+            $proc->importStyleSheet($xslDoc);
+            $result = $proc->transformToXML($xmlDoc);
+        } catch (\Exception $e) {
+            $result = 'Load error';
+        } 
         return $result;
     }
 
