@@ -7,6 +7,7 @@ $this->title = 'Signup';
 
 ?>
 <div class="site-signup">
+Signup
     <h1><?= Html::encode($this->title) ?></h1>
     <p>Please fill out the following fields to signup:</p>
     <div class="row">
