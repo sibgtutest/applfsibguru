@@ -7,7 +7,7 @@ $this->title = 'Общие сведения';
 ?>
 
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <input class="form-control" id="myInput1" type="text" placeholder="Список студентов">
         <ul id="myList1">
         <?php foreach ($studs as $stud): ?>
@@ -17,7 +17,7 @@ $this->title = 'Общие сведения';
         <?php endforeach; ?>
         </ul>        
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
         <input class="form-control" id="myInput4" type="text" placeholder="Список администраторов">
         <ul id="myList4">
         <?php foreach ($amdins as $amdin): ?>

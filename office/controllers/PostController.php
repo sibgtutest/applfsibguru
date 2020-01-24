@@ -27,12 +27,12 @@ class PostController extends Controller
                 'only' => ['index', 'create', 'update', 'view', 'delete'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update'],
+                        'actions' => ['index', 'create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['view', 'delete'],
+                        'actions' => ['view'],
                         'allow' => false,
                     ],
                 ],

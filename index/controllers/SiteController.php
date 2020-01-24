@@ -40,16 +40,29 @@ class SiteController extends Controller
         };
         $xml = $this->getXml($query);
         $result = $this->getResultDoc($xml);
+        //
+        //return 'ok';
         return $this->render('index', ['result' => $result]);
     }
 
     protected function getResultDoc($xml)
     {
-        $xmlDoc = \DOMDocument::loadXML($xml);
-        $xslDoc = \DomDocument::load(Yii::getAlias('@app').'/templates/1.xsl');
-        $proc = new \XSLTProcessor();
-        $proc->importStyleSheet($xslDoc);
-        $result = $proc->transformToXML($xmlDoc);
+        try {
+            $xmlDoc = \DOMDocument::loadXML($xml);
+            $xslDoc = \DomDocument::load(Yii::getAlias('@app').'/templates/1.xsl');
+            $proc = new \XSLTProcessor();
+            $proc->importStyleSheet($xslDoc);
+            $result = $proc->transformToXML($xmlDoc);
+        } catch (\Exception $e) {
+            $result = 'Load error';
+        } 
+        /*
+        * Sate to file
+        */
+        //$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+        //fwrite($myfile, $result);
+        //fclose($myfile);
+        //
         return $result;
     }
 
