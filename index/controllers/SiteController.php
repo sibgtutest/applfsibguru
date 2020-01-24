@@ -40,6 +40,8 @@ class SiteController extends Controller
         };
         $xml = $this->getXml($query);
         $result = $this->getResultDoc($xml);
+        //
+        //return 'ok';
         return $this->render('index', ['result' => $result]);
     }
 
@@ -54,6 +56,13 @@ class SiteController extends Controller
         } catch (\Exception $e) {
             $result = 'Load error';
         } 
+        /*
+        * Sate to file
+        */
+        //$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+        //fwrite($myfile, $result);
+        //fclose($myfile);
+        //
         return $result;
     }
 
